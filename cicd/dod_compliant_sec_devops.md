@@ -4,7 +4,67 @@ This document outlines a secure CI/CD pipeline implementation based on the requi
 
 ## 1. Pipeline Architecture Overview
 
-![CI/CD Pipeline Architecture](https://mermaid.ink/img/pako:eNqNUsFu2zAM_RWBp23oFq-XDdhy2dDBGLbTMBQCLTOxUFkyJKVIUPjfR8Vxm6HddhJAPnoyHx8ZFVIJJNF44-q9UZk4cEE2i-UikOckVxMsKbeIGqxLQX-C0ujhXn0VFB7sIRjSKbNZTa6ZQI3BG4XWoEZJ5tWhTXJuDcksdw6CdrUTbFDHFE3Cd6cUSzZCKtL7HbDOmZNCsGRUK7eiNMnb5XxyMZvMxpdBf3O_DfpH0LfTmxfT30FfTu-vp5dBTya3k9n8btCZ0tgdYvA1RTTWeyAl63-BJ-PPHb3J7mNNkhCL3dXuv_4jMZiWg8-ZjTx-mP9_MoRQfcCiRl82pHZq3SfTtvBmF_cV2mJPqfEe_dHnFjQ7LdCaR0GXQZ-CGcJITHTgvcGyXwRZB4MxsAltIQvjbAqDWR-j11W52f0Sg9jFJtYgTJ_aD4nfkA3YbUVwqNi4jU0hi86YXVVPRmcSPl3_Xv4CfqEPtg)
+```mermaid
+graph TD
+    A[Developer Workstation] -->|Commit Code| B[Source Control Management]
+    B -->|Trigger Build| C[Build System]
+    C -->|Generate Artifacts| D[Security Testing]
+    D -->|Approve Deployment| E[Deployment System]
+    E -->|Deploy to| F[Runtime Environment]
+
+    subgraph "Development Environment"
+        A
+        G[IDE Security Plugins]
+        H[Pre-commit Hooks]
+        A --- G
+        A --- H
+    end
+
+    subgraph "CI/CD Pipeline"
+        B
+        C
+        D
+        E
+        I[Artifact Repository]
+        J[Container Registry]
+        K[Secrets Management]
+
+        C --- I
+        C --- J
+        B --- K
+        C --- K
+        D --- K
+        E --- K
+    end
+
+    subgraph "Security Tools"
+        L[SAST]
+        M[DAST]
+        N[SCA]
+        O[Container Scanning]
+        P[IaC Scanning]
+        Q[Compliance Scanning]
+
+        D --- L
+        D --- M
+        D --- N
+        D --- O
+        D --- P
+        D --- Q
+    end
+
+    subgraph "Runtime Protection"
+        R[RASP]
+        S[CWPP]
+        T[CSPM]
+        U[UEBA]
+
+        F --- R
+        F --- S
+        F --- T
+        F --- U
+    end
+```
 
 ### 1.1 Pipeline Stages
 
