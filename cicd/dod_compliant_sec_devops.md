@@ -817,3 +817,40 @@ This secure CI/CD pipeline implementation aligns with the DoD Cloud Security Pla
 - Cloud security integration
 
 By implementing this pipeline, organizations can ensure their software delivery process meets DoD security requirements while enabling efficient development and deployment processes.
+
+## 13. Acronym Table
+
+| Acronym | Definition |
+|---------|------------|
+| ATO | Authority to Operate |
+| AWS | Amazon Web Services |
+| CAC | Common Access Card |
+| CASB | Cloud Access Security Broker |
+| CI/CD | Continuous Integration/Continuous Deployment |
+| CIEM | Cloud Infrastructure Entitlement Management |
+| CNAPP | Cloud-Native Application Protection Platform |
+| CSP | Cloud Service Provider |
+| CSPM | Cloud Security Posture Management |
+| CWPP | Cloud Workload Protection Platform |
+| DAST | Dynamic Application Security Testing |
+| DevSecOps | Development, Security, and Operations |
+| DISA | Defense Information Systems Agency |
+| DoD | Department of Defense |
+| FedRAMP | Federal Risk and Authorization Management Program |
+| FIPS | Federal Information Processing Standards |
+| GCP | Google Cloud Platform |
+| IaC | Infrastructure as Code |
+| ICAM | Identity, Credential, and Access Management |
+| IDE | Integrated Development Environment |
+| IL | Impact Level |
+| MFA | Multi-Factor Authentication |
+| MO | Mission Owner |
+| NIST | National Institute of Standards and Technology |
+| PIV | Personal Identity Verification |
+| RASP | Runtime Application Self-Protection |
+| RBAC | Role-Based Access Control |
+| SAST | Static Application Security Testing |
+| SCA | Software Composition Analysis |
+| SRG | Security Requirements Guide |
+| STIG | Security Technical Implementation Guide |
+| UEBA | User and Entity Behavior Analytics |
