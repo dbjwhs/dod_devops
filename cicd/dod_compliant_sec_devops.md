@@ -7,7 +7,8 @@ This document outlines a secure CI/CD pipeline implementation based on the requi
 ```mermaid
 graph TD
     A[Developer Workstation] -->|Commit Code| B[Source Control Management]
-    B -->|Trigger Build| C[Build System]
+    B -->|Submit for Review| Z[Code Review System]
+    Z -->|Approved Code| C[Build System]
     C -->|Generate Artifacts| D[Security Testing]
     D -->|Approve Deployment| E[Deployment System]
     E -->|Deploy to| F[Runtime Environment]
@@ -18,6 +19,18 @@ graph TD
         H[Pre-commit Hooks]
         A --- G
         A --- H
+    end
+
+    subgraph "Code Review Process"
+        Z
+        Z1[Peer Review]
+        Z2[Security Gatekeeper Review]
+        Z3[Mission Owner Approval]
+
+        Z --- Z1
+        Z1 -->|Peer Approved| Z2
+        Z2 -->|Gatekeeper Approved| Z3
+        Z3 -->|MO Approved| C
     end
 
     subgraph "CI/CD Pipeline"
@@ -79,26 +92,31 @@ graph TD
    - Secret detection
    - Signed commits
 
-3. **Build**
+3. **Code Review Process**
+   - Peer review
+   - Security gatekeeper review
+   - Mission Owner approval
+
+4. **Build**
    - Secure build servers
    - Build artifact validation
    - Container image scanning
    - Software composition analysis
 
-4. **Security Testing**
+5. **Security Testing**
    - Static application security testing (SAST)
    - Dynamic application security testing (DAST)
    - Infrastructure as Code (IaC) scanning
    - Software composition analysis (SCA)
    - Container scanning
 
-5. **Deployment**
+6. **Deployment**
    - Infrastructure validation
    - Configuration scanning
    - Immutable infrastructure
    - Blue-green deployments
 
-6. **Runtime Protection**
+7. **Runtime Protection**
    - Continuous monitoring
    - Runtime application self-protection
    - Vulnerability scanning
@@ -147,6 +165,110 @@ graph TD
 - Enforce code signing for all artifacts
 - Apply runtime application self-protection (RASP)
 
+### 2.3 Multi-Tier Code Review Process
+
+A critical component of DoD-compliant CI/CD pipelines is a robust code review process that follows a hierarchical approval workflow. This ensures code meets both functional requirements and security standards before proceeding to build and deployment stages.
+
+#### 2.3.1 Three-Tier Review Framework
+
+```
+┌────────────────────────────────────────────────────────────────┐
+│                                                                │
+│                      Code Submission                           │
+│                                                                │
+└────────────────────────────────┬───────────────────────────────┘
+                                 │
+                                 ▼
+┌────────────────────────────────────────────────────────────────┐
+│                                                                │
+│                      Peer Review                               │
+│                                                                │
+│  • Technical accuracy review by fellow developers              │
+│  • Adherence to coding standards                               │
+│  • Initial security review                                     │
+│  • Functional testing verification                             │
+│                                                                │
+└────────────────────────────────┬───────────────────────────────┘
+                                 │
+                                 ▼
+┌────────────────────────────────────────────────────────────────┐
+│                                                                │
+│                 Security Gatekeeper Review                     │
+│                                                                │
+│  • Comprehensive security analysis                             │
+│  • Verification of security control implementation             │
+│  • Compliance with DoD security requirements                   │
+│  • Review of SAST/SCA findings and remediation                 │
+│                                                                │
+└────────────────────────────────┬───────────────────────────────┘
+                                 │
+                                 ▼
+┌────────────────────────────────────────────────────────────────┐
+│                                                                │
+│                   Mission Owner Approval                       │
+│                                                                │
+│  • Final authorization for production deployment               │
+│  • Alignment with mission requirements                         │
+│  • Risk acceptance (if applicable)                             │
+│  • Authorization to proceed                                    │
+│                                                                │
+└────────────────────────────────┬───────────────────────────────┘
+                                 │
+                                 ▼
+┌────────────────────────────────────────────────────────────────┐
+│                                                                │
+│                      Pipeline Execution                        │
+│                                                                │
+└────────────────────────────────────────────────────────────────┘
+```
+
+#### 2.3.2 Review Process Implementation
+
+Each tier of the review process has specific responsibilities and requirements:
+
+1. **Peer Review**
+   - Conducted by fellow developers with relevant technical expertise
+   - Focus on code quality, readability, and functional correctness
+   - Preliminary security review using automated tools and checklists
+   - Documentation of findings and recommendations
+   - Must achieve consensus approval before proceeding
+
+2. **Security Gatekeeper Review**
+   - Performed by designated security personnel with specialized expertise
+   - In-depth analysis of security implications
+   - Verification that DoD security requirements are implemented correctly
+   - Assessment of SAST/DAST/SCA scan results
+   - Validation that all critical and high vulnerabilities are addressed
+   - Authorization to proceed to Mission Owner review
+
+3. **Mission Owner Approval**
+   - Final review by authorized Mission Owner representative
+   - Assessment of overall security posture and risk profile
+   - Verification that the implementation meets mission requirements
+   - Formal approval for deployment to production environment
+   - Documentation of any accepted risks with appropriate justification
+
+#### 2.3.3 Review Automation and Tooling
+
+The review process incorporates several automated elements:
+
+- Code review platforms with security-focused checklist enforcement
+- Automated policy verification for compliance with organizational standards
+- Integration with security testing results for consolidated review
+- Digital signatures for each approval stage
+- Audit logging of all review decisions and comments
+- Time-bound review expiration to ensure currency
+
+#### 2.3.4 Emergency Process Considerations
+
+For urgent security patches or critical updates, a modified review process maintains security while enabling rapid response:
+
+- Abbreviated peer review with focus on critical functionality
+- Concurrent security gatekeeper review
+- Expedited Mission Owner approval path
+- Enhanced post-deployment monitoring
+- Mandatory follow-up comprehensive review
+
 ## 3. Infrastructure as Code (IaC) Security
 
 ### 3.1 IaC Security Scanning
@@ -189,7 +311,7 @@ def scan_infrastructure_code():
 │ Scanning          │     │ Scanning          │     │ Hardening         │
 │                   │     │                   │     │                   │
 └───────────┬───────┘     └───────────────────┘     └────────┬──────────┘
-            │                                                 │
+            │                                                │
             │             ┌───────────────────┐              │
             │             │                   │              │
             └────────────►│ Vulnerability     │◄─────────────┘
@@ -233,9 +355,9 @@ def scan_infrastructure_code():
 │   detection        │    │ - Input validation │    │ - Business logic   │
 │                    │    │                    │    │                    │
 └────────┬───────────┘    └────────┬───────────┘    └────────┬───────────┘
-         │                          │                         │
-         │                          │                         │
-         ▼                          ▼                         ▼
+         │                         │                         │
+         │                         │                         │
+         ▼                         ▼                         ▼
 ┌─────────────────────────────────────────────────────────────────────────┐
 │                                                                         │
 │                       Security Findings Database                        │
@@ -374,6 +496,54 @@ pipeline {
                         refspec: '+refs/heads/main:refs/remotes/origin/main'
                     ]]
                 ])
+            }
+        }
+
+        stage('Peer Review Verification') {
+            steps {
+                // Verify that peer review has been completed
+                script {
+                    def peerReviewStatus = sh(script: 'code-review-status-checker --level=peer', returnStdout: true).trim()
+                    if (peerReviewStatus != 'APPROVED') {
+                        error "Peer review has not been completed or approved"
+                    }
+
+                    // Record peer review metadata
+                    sh 'record-review-metadata --level=peer --pipeline-run=${BUILD_NUMBER}'
+                }
+            }
+        }
+
+        stage('Security Gatekeeper Review Verification') {
+            steps {
+                // Verify that security gatekeeper review has been completed
+                script {
+                    def gatekeeperReviewStatus = sh(script: 'code-review-status-checker --level=security-gatekeeper', returnStdout: true).trim()
+                    if (gatekeeperReviewStatus != 'APPROVED') {
+                        error "Security Gatekeeper review has not been completed or approved"
+                    }
+
+                    // Record gatekeeper review metadata
+                    sh 'record-review-metadata --level=security-gatekeeper --pipeline-run=${BUILD_NUMBER}'
+                }
+            }
+        }
+
+        stage('Mission Owner Approval Verification') {
+            steps {
+                // Verify that Mission Owner approval has been granted
+                script {
+                    def moApprovalStatus = sh(script: 'code-review-status-checker --level=mission-owner', returnStdout: true).trim()
+                    if (moApprovalStatus != 'APPROVED') {
+                        error "Mission Owner approval has not been granted"
+                    }
+
+                    // Record MO approval metadata
+                    sh 'record-review-metadata --level=mission-owner --pipeline-run=${BUILD_NUMBER}'
+
+                    // Generate approval attestation
+                    sh 'generate-approval-attestation --signers=${APPROVERS} --commit=${GIT_COMMIT}'
+                }
             }
         }
 
@@ -638,6 +808,7 @@ Establish feedback loops throughout the pipeline to ensure continuous improvemen
 This secure CI/CD pipeline implementation aligns with the DoD Cloud Security Playbook requirements by incorporating:
 
 - Zero Trust principles with continuous validation
+- Multi-tier code review process with peer, security gatekeeper, and Mission Owner approval stages
 - Comprehensive security testing throughout the pipeline
 - Container and microservices security
 - Infrastructure as Code security
