@@ -315,9 +315,9 @@ A critical component of DoD-compliant CI/CD pipelines is a robust code review pr
 │      DoD-Approved Identity Provider           │
 │      (e.g., CAC, PIV integration)             │
 │                                               │
-└───────────────┬───────────────────────────────┘
-                │
-                ▼
+└──────────────────────┬────────────────────────┘
+                       │
+                       ▼
 ┌───────────────────────────────────────────────┐
 │                                               │
 │      Federated Identity Management            │
@@ -325,9 +325,9 @@ A critical component of DoD-compliant CI/CD pipelines is a robust code review pr
 │      - RBAC policies                          │
 │      - Just-in-time access                    │
 │                                               │
-└───────────────┬───────────────────────────────┘
-                │
-                ▼
+└──────────────────────┬────────────────────────┘
+                       │
+                       ▼
 ┌───────────────────────────────────────────────┐
 │                                               │
 │      Pipeline Authentication                  │
@@ -352,7 +352,8 @@ A critical component of DoD-compliant CI/CD pipelines is a robust code review pr
 └─────────────┬─────────────┘
               │
               │
-┌─────────────▼─────────────┐      ┌─────────────────────────┐
+              ▼
+┌───────────────────────────┐      ┌─────────────────────────┐
 │                           │      │                         │
 │   Secrets Rotation        │      │  Access Control         │
 │   Service                 │      │  Service                │
@@ -380,7 +381,7 @@ A critical component of DoD-compliant CI/CD pipelines is a robust code review pr
 │ Scanning          │     │ Scanning          │     │ Hardening         │
 │                   │     │                   │     │                   │
 └───────────┬───────┘     └───────────────────┘     └────────┬──────────┘
-            │                                                 │
+            │                                                │
             │             ┌───────────────────┐              │
             │             │                   │              │
             └────────────►│ Vulnerability     │◄─────────────┘
