@@ -1,6 +1,6 @@
 # DoD-Compliant CI/CD Pipeline: Implementation Example
 
-[← Back to Main Document](dod-secure-cicd-pipeline-main)
+[← Back to Main Document](README.md)
 
 This document provides a complete implementation example of a DoD-compliant CI/CD pipeline using Jenkins and various security tools.
 
@@ -1112,4 +1112,4 @@ This implementation example demonstrates a comprehensive CI/CD pipeline that inc
 
 Each organization should adapt this example to their specific needs and technologies while maintaining the core security principles and controls.
 
-[← Back to Main Document](dod-secure-cicd-pipeline-main)
+[← Back to Main Document](README.md)

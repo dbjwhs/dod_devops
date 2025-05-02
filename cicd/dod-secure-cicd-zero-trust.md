@@ -1,6 +1,6 @@
 # DoD-Compliant CI/CD Pipeline: Zero Trust Implementation
 
-[← Back to Main Document](dod-secure-cicd-pipeline-main)
+[← Back to Main Document](README.md)
 
 This document provides detailed guidance for implementing Zero Trust principles within a DoD-compliant CI/CD pipeline.
 
@@ -906,4 +906,4 @@ This implementation aligns with the DoD Cloud Security Playbook requirements by 
 
 Organizations should adopt a phased approach to Zero Trust implementation, focusing first on the fundamental building blocks before moving to more advanced capabilities. By following this guidance, DoD organizations can establish secure CI/CD pipelines that enable rapid software delivery while maintaining the highest security standards.
 
-[← Back to Main Document](dod-secure-cicd-pipeline-main)
+[← Back to Main Document](README.md)
