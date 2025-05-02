@@ -41,6 +41,14 @@ This index provides access to the complete set of documentation for implementing
    - Secrets management implementation
    - Monitoring and metrics
 
+5. [**Tools and Integrations**](dod-secure-cicd-tools.md)
+   - Open source security tools
+   - Custom tools for pipeline security
+   - Tool integration architecture
+   - Development approach for custom tools
+   - Technology stack recommendations
+   - Security requirements for tooling
+
 ## Document Navigation Guide
 
 For a complete understanding of the DoD-compliant CI/CD pipeline implementation, it is recommended to read the documents in the following order:
@@ -48,7 +56,8 @@ For a complete understanding of the DoD-compliant CI/CD pipeline implementation,
 1. Start with the **Main Implementation Guide** to understand the overall architecture and approach
 2. Review the **Zero Trust Implementation** to understand the security foundation
 3. Study the **Multi-Tier Code Review Process** to understand the approval workflow
-4. Examine the **CI/CD Pipeline Implementation Example** for practical implementation details
+4. Review the **Tools and Integrations** document to understand the toolchain components
+5. Examine the **CI/CD Pipeline Implementation Example** for practical implementation details
 
 ## Implementation Checklist
 
